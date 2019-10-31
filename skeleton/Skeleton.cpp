@@ -12,6 +12,13 @@ namespace {
 
     virtual bool runOnFunction(Function &F) {
       errs() << "I saw a function called " << F.getName() << "!\n";
+      for (auto &B : F) {
+        errs() << B.getName() << "\n";
+
+        for (auto &I: B) {
+          I.dump();
+        }
+      }
       return false;
     }
   };
