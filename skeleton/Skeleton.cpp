@@ -16,7 +16,7 @@ namespace {
         errs() << B.getName() << "\n";
 
         for (auto &I: B) {
-          I.dump();
+          errs() << I << "\n";
         }
       }
       return false;
