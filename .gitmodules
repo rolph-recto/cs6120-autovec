@@ -1,0 +1,6 @@
+[submodule "taco"]
+	path = taco
+	url = git@github.com:tensor-compiler/taco
+[submodule "taco-bench"]
+	path = taco-bench
+	url = git@github.com:tensor-compiler/taco-bench
