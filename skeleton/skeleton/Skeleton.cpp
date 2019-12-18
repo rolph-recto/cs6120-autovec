@@ -109,6 +109,8 @@ namespace {
         }
       }
 
+      if (!hasVectorizableLoopBound) return false;
+
       // find indvar update instruction
       // dont vectorize unless we find an update instruction
       bool hasLoopUpdate = false;
@@ -128,6 +130,8 @@ namespace {
           }
         }
       }
+
+      if (!hasLoopUpdate) return false;
 
       // check that all instructions in the body are vectorizable
       bool hasCrossIterationDependencies = false;
@@ -172,6 +176,8 @@ namespace {
           }
         }
       }
+
+      if (!hasCrossIterationDependencies) return false;
 
       bool isVectorizable =
           hasVectorizableLoopBound
