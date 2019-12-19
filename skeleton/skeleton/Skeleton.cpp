@@ -177,7 +177,7 @@ namespace {
         }
       }
 
-      if (!hasCrossIterationDependencies) return false;
+      if (hasCrossIterationDependencies) return false;
 
       bool isVectorizable =
           hasVectorizableLoopBound
