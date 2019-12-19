@@ -30,8 +30,8 @@ target triple = "x86_64-apple-macosx10.14.0"
 %"class.std::__1::locale::facet" = type { %"class.std::__1::__shared_count" }
 %"class.std::__1::__shared_count" = type { i32 (...)**, i64 }
 
-@__const.main.mat1 = private unnamed_addr constant [4 x [4 x i64]] [[4 x i64] [i64 1, i64 1, i64 1, i64 1], [4 x i64] [i64 2, i64 2, i64 2, i64 2], [4 x i64] [i64 3, i64 3, i64 3, i64 3], [4 x i64] [i64 4, i64 4, i64 4, i64 4]], align 16
-@__const.main.mat2 = private unnamed_addr constant [4 x [4 x i64]] [[4 x i64] [i64 1, i64 1, i64 1, i64 1], [4 x i64] [i64 2, i64 2, i64 2, i64 2], [4 x i64] [i64 3, i64 3, i64 3, i64 3], [4 x i64] [i64 4, i64 4, i64 4, i64 4]], align 16
+@__const.main.mat1 = private unnamed_addr constant [4 x [4 x i32]] [[4 x i32] [i32 1, i32 1, i32 1, i32 1], [4 x i32] [i32 2, i32 2, i32 2, i32 2], [4 x i32] [i32 3, i32 3, i32 3, i32 3], [4 x i32] [i32 4, i32 4, i32 4, i32 4]], align 16
+@__const.main.mat2 = private unnamed_addr constant [4 x [4 x i32]] [[4 x i32] [i32 1, i32 1, i32 1, i32 1], [4 x i32] [i32 2, i32 2, i32 2, i32 2], [4 x i32] [i32 3, i32 3, i32 3, i32 3], [4 x i32] [i32 4, i32 4, i32 4, i32 4]], align 16
 @_ZNSt3__14coutE = external global %"class.std::__1::basic_ostream", align 8
 @.str = private unnamed_addr constant [19 x i8] c"Result matrix is \0A\00", align 1
 @.str.1 = private unnamed_addr constant [2 x i8] c" \00", align 1
@@ -39,98 +39,104 @@ target triple = "x86_64-apple-macosx10.14.0"
 @_ZNSt3__15ctypeIcE2idE = external global %"class.std::__1::locale::id", align 8
 
 ; Function Attrs: noinline nounwind ssp uwtable
-define void @_Z8multiplyPA4_xS0_S0_([4 x i64]* %A, [4 x i64]* %B, [4 x i64]* %C) #0 {
+define void @_Z8multiplyPA4_iS0_S0_([4 x i32]* %A, [4 x i32]* %B, [4 x i32]* %C) #0 {
 entry:
-  %A.addr = alloca [4 x i64]*, align 8
-  %B.addr = alloca [4 x i64]*, align 8
-  %C.addr = alloca [4 x i64]*, align 8
-  %i = alloca i64, align 8
-  %j = alloca i64, align 8
-  %k = alloca i64, align 8
-  store [4 x i64]* %A, [4 x i64]** %A.addr, align 8
-  store [4 x i64]* %B, [4 x i64]** %B.addr, align 8
-  store [4 x i64]* %C, [4 x i64]** %C.addr, align 8
-  store i64 0, i64* %i, align 8
+  %A.addr = alloca [4 x i32]*, align 8
+  %B.addr = alloca [4 x i32]*, align 8
+  %C.addr = alloca [4 x i32]*, align 8
+  %i = alloca i32, align 4
+  %j = alloca i32, align 4
+  %k = alloca i32, align 4
+  store [4 x i32]* %A, [4 x i32]** %A.addr, align 8
+  store [4 x i32]* %B, [4 x i32]** %B.addr, align 8
+  store [4 x i32]* %C, [4 x i32]** %C.addr, align 8
+  store i32 0, i32* %i, align 4
   br label %for.cond
 
-for.cond:                                         ; preds = %for.inc17, %entry
-  %0 = load i64, i64* %i, align 8
-  %cmp = icmp slt i64 %0, 4
-  br i1 %cmp, label %for.body, label %for.end19
+for.cond:                                         ; preds = %for.inc24, %entry
+  %0 = load i32, i32* %i, align 4
+  %cmp = icmp slt i32 %0, 4
+  br i1 %cmp, label %for.body, label %for.end26
 
 for.body:                                         ; preds = %for.cond
-  store i64 0, i64* %j, align 8
+  store i32 0, i32* %j, align 4
   br label %for.cond1
 
-for.cond1:                                        ; preds = %for.inc14, %for.body
-  %1 = load i64, i64* %j, align 8
-  %cmp2 = icmp slt i64 %1, 4
-  br i1 %cmp2, label %for.body3, label %for.end16
+for.cond1:                                        ; preds = %for.inc21, %for.body
+  %1 = load i32, i32* %j, align 4
+  %cmp2 = icmp slt i32 %1, 4
+  br i1 %cmp2, label %for.body3, label %for.end23
 
 for.body3:                                        ; preds = %for.cond1
-  %2 = load [4 x i64]*, [4 x i64]** %C.addr, align 8
-  %3 = load i64, i64* %i, align 8
-  %arrayidx = getelementptr inbounds [4 x i64], [4 x i64]* %2, i64 %3
-  %4 = load i64, i64* %j, align 8
-  %arrayidx4 = getelementptr inbounds [4 x i64], [4 x i64]* %arrayidx, i64 0, i64 %4
-  store i64 0, i64* %arrayidx4, align 8
-  store i64 0, i64* %k, align 8
-  br label %for.cond5
+  %2 = load [4 x i32]*, [4 x i32]** %C.addr, align 8
+  %3 = load i32, i32* %i, align 4
+  %idxprom = sext i32 %3 to i64
+  %arrayidx = getelementptr inbounds [4 x i32], [4 x i32]* %2, i64 %idxprom
+  %4 = load i32, i32* %j, align 4
+  %idxprom4 = sext i32 %4 to i64
+  %arrayidx5 = getelementptr inbounds [4 x i32], [4 x i32]* %arrayidx, i64 0, i64 %idxprom4
+  store i32 0, i32* %arrayidx5, align 4
+  store i32 0, i32* %k, align 4
+  br label %for.cond6
 
-for.cond5:                                        ; preds = %for.inc, %for.body3
-  %5 = load i64, i64* %k, align 8
-  %cmp6 = icmp slt i64 %5, 4
-  br i1 %cmp6, label %for.body7, label %for.end
+for.cond6:                                        ; preds = %for.inc, %for.body3
+  %5 = load i32, i32* %k, align 4
+  %cmp7 = icmp slt i32 %5, 4
+  br i1 %cmp7, label %for.body8, label %for.end
 
-for.body7:                                        ; preds = %for.cond5
-  %6 = load [4 x i64]*, [4 x i64]** %A.addr, align 8
-  %7 = load i64, i64* %i, align 8
-  %arrayidx8 = getelementptr inbounds [4 x i64], [4 x i64]* %6, i64 %7
-  %8 = load i64, i64* %k, align 8
-  %arrayidx9 = getelementptr inbounds [4 x i64], [4 x i64]* %arrayidx8, i64 0, i64 %8
-  %9 = load i64, i64* %arrayidx9, align 8
-  %10 = load [4 x i64]*, [4 x i64]** %B.addr, align 8
-  %11 = load i64, i64* %k, align 8
-  %arrayidx10 = getelementptr inbounds [4 x i64], [4 x i64]* %10, i64 %11
-  %12 = load i64, i64* %j, align 8
-  %arrayidx11 = getelementptr inbounds [4 x i64], [4 x i64]* %arrayidx10, i64 0, i64 %12
-  %13 = load i64, i64* %arrayidx11, align 8
-  %mul = mul nsw i64 %9, %13
-  %14 = load [4 x i64]*, [4 x i64]** %C.addr, align 8
-  %15 = load i64, i64* %i, align 8
-  %arrayidx12 = getelementptr inbounds [4 x i64], [4 x i64]* %14, i64 %15
-  %16 = load i64, i64* %j, align 8
-  %arrayidx13 = getelementptr inbounds [4 x i64], [4 x i64]* %arrayidx12, i64 0, i64 %16
-  %17 = load i64, i64* %arrayidx13, align 8
-  %add = add nsw i64 %17, %mul
-  store i64 %add, i64* %arrayidx13, align 8
+for.body8:                                        ; preds = %for.cond6
+  %6 = load [4 x i32]*, [4 x i32]** %A.addr, align 8
+  %7 = load i32, i32* %i, align 4
+  %idxprom9 = sext i32 %7 to i64
+  %arrayidx10 = getelementptr inbounds [4 x i32], [4 x i32]* %6, i64 %idxprom9
+  %8 = load i32, i32* %k, align 4
+  %idxprom11 = sext i32 %8 to i64
+  %arrayidx12 = getelementptr inbounds [4 x i32], [4 x i32]* %arrayidx10, i64 0, i64 %idxprom11
+  %9 = load i32, i32* %arrayidx12, align 4
+  %10 = load [4 x i32]*, [4 x i32]** %B.addr, align 8
+  %11 = load i32, i32* %k, align 4
+  %idxprom13 = sext i32 %11 to i64
+  %arrayidx14 = getelementptr inbounds [4 x i32], [4 x i32]* %10, i64 %idxprom13
+  %12 = load i32, i32* %j, align 4
+  %idxprom15 = sext i32 %12 to i64
+  %arrayidx16 = getelementptr inbounds [4 x i32], [4 x i32]* %arrayidx14, i64 0, i64 %idxprom15
+  %13 = load i32, i32* %arrayidx16, align 4
+  %mul = mul nsw i32 %9, %13
+  %14 = load [4 x i32]*, [4 x i32]** %C.addr, align 8
+  %15 = load i32, i32* %i, align 4
+  %idxprom17 = sext i32 %15 to i64
+  %arrayidx18 = getelementptr inbounds [4 x i32], [4 x i32]* %14, i64 %idxprom17
+  %16 = load i32, i32* %j, align 4
+  %idxprom19 = sext i32 %16 to i64
+  %arrayidx20 = getelementptr inbounds [4 x i32], [4 x i32]* %arrayidx18, i64 0, i64 %idxprom19
+  store i32 %mul, i32* %arrayidx20, align 4
   br label %for.inc
 
-for.inc:                                          ; preds = %for.body7
-  %18 = load i64, i64* %k, align 8
-  %inc = add nsw i64 %18, 1
-  store i64 %inc, i64* %k, align 8
-  br label %for.cond5
+for.inc:                                          ; preds = %for.body8
+  %17 = load i32, i32* %k, align 4
+  %inc = add nsw i32 %17, 1
+  store i32 %inc, i32* %k, align 4
+  br label %for.cond6
 
-for.end:                                          ; preds = %for.cond5
-  br label %for.inc14
+for.end:                                          ; preds = %for.cond6
+  br label %for.inc21
 
-for.inc14:                                        ; preds = %for.end
-  %19 = load i64, i64* %j, align 8
-  %inc15 = add nsw i64 %19, 1
-  store i64 %inc15, i64* %j, align 8
+for.inc21:                                        ; preds = %for.end
+  %18 = load i32, i32* %j, align 4
+  %inc22 = add nsw i32 %18, 1
+  store i32 %inc22, i32* %j, align 4
   br label %for.cond1
 
-for.end16:                                        ; preds = %for.cond1
-  br label %for.inc17
+for.end23:                                        ; preds = %for.cond1
+  br label %for.inc24
 
-for.inc17:                                        ; preds = %for.end16
-  %20 = load i64, i64* %i, align 8
-  %inc18 = add nsw i64 %20, 1
-  store i64 %inc18, i64* %i, align 8
+for.inc24:                                        ; preds = %for.end23
+  %19 = load i32, i32* %i, align 4
+  %inc25 = add nsw i32 %19, 1
+  store i32 %inc25, i32* %i, align 4
   br label %for.cond
 
-for.end19:                                        ; preds = %for.cond
+for.end26:                                        ; preds = %for.cond
   ret void
 }
 
@@ -138,63 +144,64 @@ for.end19:                                        ; preds = %for.cond
 define i32 @main() #1 {
 entry:
   %retval = alloca i32, align 4
-  %i = alloca i64, align 8
-  %j = alloca i64, align 8
-  %res = alloca [4 x [4 x i64]], align 16
-  %mat1 = alloca [4 x [4 x i64]], align 16
-  %mat2 = alloca [4 x [4 x i64]], align 16
-  %i3 = alloca i64, align 8
+  %i = alloca i32, align 4
+  %j = alloca i32, align 4
+  %res = alloca [4 x [4 x i32]], align 16
+  %mat1 = alloca [4 x [4 x i32]], align 16
+  %mat2 = alloca [4 x [4 x i32]], align 16
   store i32 0, i32* %retval, align 4
-  %0 = bitcast [4 x [4 x i64]]* %mat1 to i8*
-  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 16 %0, i8* align 16 bitcast ([4 x [4 x i64]]* @__const.main.mat1 to i8*), i64 128, i1 false)
-  %1 = bitcast [4 x [4 x i64]]* %mat2 to i8*
-  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 16 %1, i8* align 16 bitcast ([4 x [4 x i64]]* @__const.main.mat2 to i8*), i64 128, i1 false)
-  %arraydecay = getelementptr inbounds [4 x [4 x i64]], [4 x [4 x i64]]* %mat1, i64 0, i64 0
-  %arraydecay1 = getelementptr inbounds [4 x [4 x i64]], [4 x [4 x i64]]* %mat2, i64 0, i64 0
-  %arraydecay2 = getelementptr inbounds [4 x [4 x i64]], [4 x [4 x i64]]* %res, i64 0, i64 0
-  call void @_Z8multiplyPA4_xS0_S0_([4 x i64]* %arraydecay, [4 x i64]* %arraydecay1, [4 x i64]* %arraydecay2)
+  %0 = bitcast [4 x [4 x i32]]* %mat1 to i8*
+  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 16 %0, i8* align 16 bitcast ([4 x [4 x i32]]* @__const.main.mat1 to i8*), i64 64, i1 false)
+  %1 = bitcast [4 x [4 x i32]]* %mat2 to i8*
+  call void @llvm.memcpy.p0i8.p0i8.i64(i8* align 16 %1, i8* align 16 bitcast ([4 x [4 x i32]]* @__const.main.mat2 to i8*), i64 64, i1 false)
+  %arraydecay = getelementptr inbounds [4 x [4 x i32]], [4 x [4 x i32]]* %mat1, i64 0, i64 0
+  %arraydecay1 = getelementptr inbounds [4 x [4 x i32]], [4 x [4 x i32]]* %mat2, i64 0, i64 0
+  %arraydecay2 = getelementptr inbounds [4 x [4 x i32]], [4 x [4 x i32]]* %res, i64 0, i64 0
+  call void @_Z8multiplyPA4_iS0_S0_([4 x i32]* %arraydecay, [4 x i32]* %arraydecay1, [4 x i32]* %arraydecay2)
   %call = call dereferenceable(160) %"class.std::__1::basic_ostream"* @_ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc(%"class.std::__1::basic_ostream"* dereferenceable(160) @_ZNSt3__14coutE, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str, i64 0, i64 0))
-  store i64 0, i64* %i3, align 8
+  store i32 0, i32* %i, align 4
   br label %for.cond
 
 for.cond:                                         ; preds = %for.inc11, %entry
-  %2 = load i64, i64* %i3, align 8
-  %cmp = icmp slt i64 %2, 4
+  %2 = load i32, i32* %i, align 4
+  %cmp = icmp slt i32 %2, 4
   br i1 %cmp, label %for.body, label %for.end13
 
 for.body:                                         ; preds = %for.cond
-  store i64 0, i64* %j, align 8
-  br label %for.cond4
+  store i32 0, i32* %j, align 4
+  br label %for.cond3
 
-for.cond4:                                        ; preds = %for.inc, %for.body
-  %3 = load i64, i64* %j, align 8
-  %cmp5 = icmp slt i64 %3, 4
-  br i1 %cmp5, label %for.body6, label %for.end
+for.cond3:                                        ; preds = %for.inc, %for.body
+  %3 = load i32, i32* %j, align 4
+  %cmp4 = icmp slt i32 %3, 4
+  br i1 %cmp4, label %for.body5, label %for.end
 
-for.body6:                                        ; preds = %for.cond4
-  %4 = load i64, i64* %i3, align 8
-  %arrayidx = getelementptr inbounds [4 x [4 x i64]], [4 x [4 x i64]]* %res, i64 0, i64 %4
-  %5 = load i64, i64* %j, align 8
-  %arrayidx7 = getelementptr inbounds [4 x i64], [4 x i64]* %arrayidx, i64 0, i64 %5
-  %6 = load i64, i64* %arrayidx7, align 8
-  %call8 = call dereferenceable(160) %"class.std::__1::basic_ostream"* @_ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEx(%"class.std::__1::basic_ostream"* @_ZNSt3__14coutE, i64 %6)
+for.body5:                                        ; preds = %for.cond3
+  %4 = load i32, i32* %i, align 4
+  %idxprom = sext i32 %4 to i64
+  %arrayidx = getelementptr inbounds [4 x [4 x i32]], [4 x [4 x i32]]* %res, i64 0, i64 %idxprom
+  %5 = load i32, i32* %j, align 4
+  %idxprom6 = sext i32 %5 to i64
+  %arrayidx7 = getelementptr inbounds [4 x i32], [4 x i32]* %arrayidx, i64 0, i64 %idxprom6
+  %6 = load i32, i32* %arrayidx7, align 4
+  %call8 = call dereferenceable(160) %"class.std::__1::basic_ostream"* @_ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi(%"class.std::__1::basic_ostream"* @_ZNSt3__14coutE, i32 %6)
   %call9 = call dereferenceable(160) %"class.std::__1::basic_ostream"* @_ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc(%"class.std::__1::basic_ostream"* dereferenceable(160) %call8, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.1, i64 0, i64 0))
   br label %for.inc
 
-for.inc:                                          ; preds = %for.body6
-  %7 = load i64, i64* %j, align 8
-  %inc = add nsw i64 %7, 1
-  store i64 %inc, i64* %j, align 8
-  br label %for.cond4
+for.inc:                                          ; preds = %for.body5
+  %7 = load i32, i32* %j, align 4
+  %inc = add nsw i32 %7, 1
+  store i32 %inc, i32* %j, align 4
+  br label %for.cond3
 
-for.end:                                          ; preds = %for.cond4
+for.end:                                          ; preds = %for.cond3
   %call10 = call dereferenceable(160) %"class.std::__1::basic_ostream"* @_ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc(%"class.std::__1::basic_ostream"* dereferenceable(160) @_ZNSt3__14coutE, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.2, i64 0, i64 0))
   br label %for.inc11
 
 for.inc11:                                        ; preds = %for.end
-  %8 = load i64, i64* %i3, align 8
-  %inc12 = add nsw i64 %8, 1
-  store i64 %inc12, i64* %i3, align 8
+  %8 = load i32, i32* %i, align 4
+  %inc12 = add nsw i32 %8, 1
+  store i32 %inc12, i32* %i, align 4
   br label %for.cond
 
 for.end13:                                        ; preds = %for.cond
@@ -219,7 +226,7 @@ entry:
   ret %"class.std::__1::basic_ostream"* %call1
 }
 
-declare dereferenceable(160) %"class.std::__1::basic_ostream"* @_ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEx(%"class.std::__1::basic_ostream"*, i64) #4
+declare dereferenceable(160) %"class.std::__1::basic_ostream"* @_ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi(%"class.std::__1::basic_ostream"*, i32) #4
 
 ; Function Attrs: noinline ssp uwtable
 define linkonce_odr dereferenceable(160) %"class.std::__1::basic_ostream"* @_ZNSt3__124__put_character_sequenceIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_PKS4_m(%"class.std::__1::basic_ostream"* dereferenceable(160) %__os, i8* %__str, i64 %__len) #3 personality i8* bitcast (i32 (...)* @__gxx_personality_v0 to i8*) {

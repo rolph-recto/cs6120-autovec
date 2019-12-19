@@ -5,461 +5,464 @@ target triple = "x86_64-apple-macosx10.14.0"
 
 %struct.taco_tensor_t = type { i32, i32*, i32, i32*, i32*, i8***, i8*, i32 }
 
-; Function Attrs: noinline nounwind optnone ssp uwtable
-define i32 @cmp(i8*, i8*) #0 {
-  %3 = alloca i8*, align 8
-  %4 = alloca i8*, align 8
-  store i8* %0, i8** %3, align 8
-  store i8* %1, i8** %4, align 8
-  %5 = load i8*, i8** %3, align 8
-  %6 = bitcast i8* %5 to i32*
-  %7 = load i32, i32* %6, align 4
-  %8 = load i8*, i8** %4, align 8
-  %9 = bitcast i8* %8 to i32*
-  %10 = load i32, i32* %9, align 4
-  %11 = sub nsw i32 %7, %10
-  ret i32 %11
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @cmp(i8* %a, i8* %b) #0 {
+entry:
+  %a.addr = alloca i8*, align 8
+  %b.addr = alloca i8*, align 8
+  store i8* %a, i8** %a.addr, align 8
+  store i8* %b, i8** %b.addr, align 8
+  %0 = load i8*, i8** %a.addr, align 8
+  %1 = bitcast i8* %0 to i32*
+  %2 = load i32, i32* %1, align 4
+  %3 = load i8*, i8** %b.addr, align 8
+  %4 = bitcast i8* %3 to i32*
+  %5 = load i32, i32* %4, align 4
+  %sub = sub nsw i32 %2, %5
+  ret i32 %sub
 }
 
-; Function Attrs: noinline nounwind optnone ssp uwtable
-define i32 @compute(%struct.taco_tensor_t*, %struct.taco_tensor_t*, %struct.taco_tensor_t*, %struct.taco_tensor_t*) #0 {
-  %5 = alloca %struct.taco_tensor_t*, align 8
-  %6 = alloca %struct.taco_tensor_t*, align 8
-  %7 = alloca %struct.taco_tensor_t*, align 8
-  %8 = alloca %struct.taco_tensor_t*, align 8
-  %9 = alloca i32, align 4
-  %10 = alloca i32, align 4
-  %11 = alloca double*, align 8
-  %12 = alloca i32, align 4
-  %13 = alloca i32, align 4
-  %14 = alloca double*, align 8
-  %15 = alloca i32, align 4
-  %16 = alloca i32, align 4
-  %17 = alloca double*, align 8
-  %18 = alloca i32, align 4
-  %19 = alloca i32, align 4
-  %20 = alloca double*, align 8
-  %21 = alloca i32, align 4
-  %22 = alloca i32, align 4
-  %23 = alloca i32, align 4
-  %24 = alloca i32, align 4
-  %25 = alloca i32, align 4
-  %26 = alloca i32, align 4
-  store %struct.taco_tensor_t* %0, %struct.taco_tensor_t** %5, align 8
-  store %struct.taco_tensor_t* %1, %struct.taco_tensor_t** %6, align 8
-  store %struct.taco_tensor_t* %2, %struct.taco_tensor_t** %7, align 8
-  store %struct.taco_tensor_t* %3, %struct.taco_tensor_t** %8, align 8
-  %27 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %5, align 8
-  %28 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %27, i32 0, i32 1
-  %29 = load i32*, i32** %28, align 8
-  %30 = getelementptr inbounds i32, i32* %29, i64 0
-  %31 = load i32, i32* %30, align 4
-  store i32 %31, i32* %9, align 4
-  %32 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %5, align 8
-  %33 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %32, i32 0, i32 1
-  %34 = load i32*, i32** %33, align 8
-  %35 = getelementptr inbounds i32, i32* %34, i64 1
-  %36 = load i32, i32* %35, align 4
-  store i32 %36, i32* %10, align 4
-  %37 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %5, align 8
-  %38 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %37, i32 0, i32 6
-  %39 = load i8*, i8** %38, align 8
-  %40 = bitcast i8* %39 to double*
-  store double* %40, double** %11, align 8
-  %41 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %6, align 8
-  %42 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %41, i32 0, i32 1
-  %43 = load i32*, i32** %42, align 8
-  %44 = getelementptr inbounds i32, i32* %43, i64 0
-  %45 = load i32, i32* %44, align 4
-  store i32 %45, i32* %12, align 4
-  %46 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %6, align 8
-  %47 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %46, i32 0, i32 1
-  %48 = load i32*, i32** %47, align 8
-  %49 = getelementptr inbounds i32, i32* %48, i64 1
-  %50 = load i32, i32* %49, align 4
-  store i32 %50, i32* %13, align 4
-  %51 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %6, align 8
-  %52 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %51, i32 0, i32 6
-  %53 = load i8*, i8** %52, align 8
-  %54 = bitcast i8* %53 to double*
-  store double* %54, double** %14, align 8
-  %55 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %7, align 8
-  %56 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %55, i32 0, i32 1
-  %57 = load i32*, i32** %56, align 8
-  %58 = getelementptr inbounds i32, i32* %57, i64 0
-  %59 = load i32, i32* %58, align 4
-  store i32 %59, i32* %15, align 4
-  %60 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %7, align 8
-  %61 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %60, i32 0, i32 1
-  %62 = load i32*, i32** %61, align 8
-  %63 = getelementptr inbounds i32, i32* %62, i64 1
-  %64 = load i32, i32* %63, align 4
-  store i32 %64, i32* %16, align 4
-  %65 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %7, align 8
-  %66 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %65, i32 0, i32 6
-  %67 = load i8*, i8** %66, align 8
-  %68 = bitcast i8* %67 to double*
-  store double* %68, double** %17, align 8
-  %69 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %8, align 8
-  %70 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %69, i32 0, i32 1
-  %71 = load i32*, i32** %70, align 8
-  %72 = getelementptr inbounds i32, i32* %71, i64 0
-  %73 = load i32, i32* %72, align 4
-  store i32 %73, i32* %18, align 4
-  %74 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %8, align 8
-  %75 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %74, i32 0, i32 1
-  %76 = load i32*, i32** %75, align 8
-  %77 = getelementptr inbounds i32, i32* %76, i64 1
-  %78 = load i32, i32* %77, align 4
-  store i32 %78, i32* %19, align 4
-  %79 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %8, align 8
-  %80 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %79, i32 0, i32 6
-  %81 = load i8*, i8** %80, align 8
-  %82 = bitcast i8* %81 to double*
-  store double* %82, double** %20, align 8
-  store i32 0, i32* %21, align 4
-  br label %83
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @compute(%struct.taco_tensor_t* %A, %struct.taco_tensor_t* %B, %struct.taco_tensor_t* %C, %struct.taco_tensor_t* %D) #0 {
+entry:
+  %A.addr = alloca %struct.taco_tensor_t*, align 8
+  %B.addr = alloca %struct.taco_tensor_t*, align 8
+  %C.addr = alloca %struct.taco_tensor_t*, align 8
+  %D.addr = alloca %struct.taco_tensor_t*, align 8
+  %A1_dimension = alloca i32, align 4
+  %A2_dimension = alloca i32, align 4
+  %A_vals = alloca double*, align 8
+  %B1_dimension = alloca i32, align 4
+  %B2_dimension = alloca i32, align 4
+  %B_vals = alloca double*, align 8
+  %C1_dimension = alloca i32, align 4
+  %C2_dimension = alloca i32, align 4
+  %C_vals = alloca double*, align 8
+  %D1_dimension = alloca i32, align 4
+  %D2_dimension = alloca i32, align 4
+  %D_vals = alloca double*, align 8
+  %i = alloca i32, align 4
+  %j = alloca i32, align 4
+  %pA2 = alloca i32, align 4
+  %pB2 = alloca i32, align 4
+  %pC2 = alloca i32, align 4
+  %pD2 = alloca i32, align 4
+  store %struct.taco_tensor_t* %A, %struct.taco_tensor_t** %A.addr, align 8
+  store %struct.taco_tensor_t* %B, %struct.taco_tensor_t** %B.addr, align 8
+  store %struct.taco_tensor_t* %C, %struct.taco_tensor_t** %C.addr, align 8
+  store %struct.taco_tensor_t* %D, %struct.taco_tensor_t** %D.addr, align 8
+  %0 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %A.addr, align 8
+  %dimensions = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %0, i32 0, i32 1
+  %1 = load i32*, i32** %dimensions, align 8
+  %arrayidx = getelementptr inbounds i32, i32* %1, i64 0
+  %2 = load i32, i32* %arrayidx, align 4
+  store i32 %2, i32* %A1_dimension, align 4
+  %3 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %A.addr, align 8
+  %dimensions1 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %3, i32 0, i32 1
+  %4 = load i32*, i32** %dimensions1, align 8
+  %arrayidx2 = getelementptr inbounds i32, i32* %4, i64 1
+  %5 = load i32, i32* %arrayidx2, align 4
+  store i32 %5, i32* %A2_dimension, align 4
+  %6 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %A.addr, align 8
+  %vals = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %6, i32 0, i32 6
+  %7 = load i8*, i8** %vals, align 8
+  %8 = bitcast i8* %7 to double*
+  store double* %8, double** %A_vals, align 8
+  %9 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %B.addr, align 8
+  %dimensions3 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %9, i32 0, i32 1
+  %10 = load i32*, i32** %dimensions3, align 8
+  %arrayidx4 = getelementptr inbounds i32, i32* %10, i64 0
+  %11 = load i32, i32* %arrayidx4, align 4
+  store i32 %11, i32* %B1_dimension, align 4
+  %12 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %B.addr, align 8
+  %dimensions5 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %12, i32 0, i32 1
+  %13 = load i32*, i32** %dimensions5, align 8
+  %arrayidx6 = getelementptr inbounds i32, i32* %13, i64 1
+  %14 = load i32, i32* %arrayidx6, align 4
+  store i32 %14, i32* %B2_dimension, align 4
+  %15 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %B.addr, align 8
+  %vals7 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %15, i32 0, i32 6
+  %16 = load i8*, i8** %vals7, align 8
+  %17 = bitcast i8* %16 to double*
+  store double* %17, double** %B_vals, align 8
+  %18 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %C.addr, align 8
+  %dimensions8 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %18, i32 0, i32 1
+  %19 = load i32*, i32** %dimensions8, align 8
+  %arrayidx9 = getelementptr inbounds i32, i32* %19, i64 0
+  %20 = load i32, i32* %arrayidx9, align 4
+  store i32 %20, i32* %C1_dimension, align 4
+  %21 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %C.addr, align 8
+  %dimensions10 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %21, i32 0, i32 1
+  %22 = load i32*, i32** %dimensions10, align 8
+  %arrayidx11 = getelementptr inbounds i32, i32* %22, i64 1
+  %23 = load i32, i32* %arrayidx11, align 4
+  store i32 %23, i32* %C2_dimension, align 4
+  %24 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %C.addr, align 8
+  %vals12 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %24, i32 0, i32 6
+  %25 = load i8*, i8** %vals12, align 8
+  %26 = bitcast i8* %25 to double*
+  store double* %26, double** %C_vals, align 8
+  %27 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %D.addr, align 8
+  %dimensions13 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %27, i32 0, i32 1
+  %28 = load i32*, i32** %dimensions13, align 8
+  %arrayidx14 = getelementptr inbounds i32, i32* %28, i64 0
+  %29 = load i32, i32* %arrayidx14, align 4
+  store i32 %29, i32* %D1_dimension, align 4
+  %30 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %D.addr, align 8
+  %dimensions15 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %30, i32 0, i32 1
+  %31 = load i32*, i32** %dimensions15, align 8
+  %arrayidx16 = getelementptr inbounds i32, i32* %31, i64 1
+  %32 = load i32, i32* %arrayidx16, align 4
+  store i32 %32, i32* %D2_dimension, align 4
+  %33 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %D.addr, align 8
+  %vals17 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %33, i32 0, i32 6
+  %34 = load i8*, i8** %vals17, align 8
+  %35 = bitcast i8* %34 to double*
+  store double* %35, double** %D_vals, align 8
+  store i32 0, i32* %i, align 4
+  br label %for.cond
 
-; <label>:83:                                     ; preds = %138, %4
-  %84 = load i32, i32* %21, align 4
-  %85 = load i32, i32* %18, align 4
-  %86 = icmp slt i32 %84, %85
-  br i1 %86, label %87, label %141
+for.cond:                                         ; preds = %for.inc36, %entry
+  %36 = load i32, i32* %i, align 4
+  %37 = load i32, i32* %D1_dimension, align 4
+  %cmp = icmp slt i32 %36, %37
+  br i1 %cmp, label %for.body, label %for.end38
 
-; <label>:87:                                     ; preds = %83
-  store i32 0, i32* %22, align 4
-  br label %88
+for.body:                                         ; preds = %for.cond
+  store i32 0, i32* %j, align 4
+  br label %for.cond18
 
-; <label>:88:                                     ; preds = %134, %87
-  %89 = load i32, i32* %22, align 4
-  %90 = load i32, i32* %19, align 4
-  %91 = icmp slt i32 %89, %90
-  br i1 %91, label %92, label %137
+for.cond18:                                       ; preds = %for.inc, %for.body
+  %38 = load i32, i32* %j, align 4
+  %39 = load i32, i32* %D2_dimension, align 4
+  %cmp19 = icmp slt i32 %38, %39
+  br i1 %cmp19, label %for.body20, label %for.end
 
-; <label>:92:                                     ; preds = %88
-  %93 = load i32, i32* %21, align 4
-  %94 = load i32, i32* %10, align 4
-  %95 = mul nsw i32 %93, %94
-  %96 = load i32, i32* %22, align 4
-  %97 = add nsw i32 %95, %96
-  store i32 %97, i32* %23, align 4
-  %98 = load i32, i32* %21, align 4
-  %99 = load i32, i32* %13, align 4
-  %100 = mul nsw i32 %98, %99
-  %101 = load i32, i32* %22, align 4
-  %102 = add nsw i32 %100, %101
-  store i32 %102, i32* %24, align 4
-  %103 = load i32, i32* %21, align 4
-  %104 = load i32, i32* %16, align 4
-  %105 = mul nsw i32 %103, %104
-  %106 = load i32, i32* %22, align 4
-  %107 = add nsw i32 %105, %106
-  store i32 %107, i32* %25, align 4
-  %108 = load i32, i32* %21, align 4
-  %109 = load i32, i32* %19, align 4
-  %110 = mul nsw i32 %108, %109
-  %111 = load i32, i32* %22, align 4
-  %112 = add nsw i32 %110, %111
-  store i32 %112, i32* %26, align 4
-  %113 = load double*, double** %14, align 8
-  %114 = load i32, i32* %24, align 4
-  %115 = sext i32 %114 to i64
-  %116 = getelementptr inbounds double, double* %113, i64 %115
-  %117 = load double, double* %116, align 8
-  %118 = load double*, double** %17, align 8
-  %119 = load i32, i32* %25, align 4
-  %120 = sext i32 %119 to i64
-  %121 = getelementptr inbounds double, double* %118, i64 %120
-  %122 = load double, double* %121, align 8
-  %123 = fadd double %117, %122
-  %124 = load double*, double** %20, align 8
-  %125 = load i32, i32* %26, align 4
-  %126 = sext i32 %125 to i64
-  %127 = getelementptr inbounds double, double* %124, i64 %126
-  %128 = load double, double* %127, align 8
-  %129 = fadd double %123, %128
-  %130 = load double*, double** %11, align 8
-  %131 = load i32, i32* %23, align 4
-  %132 = sext i32 %131 to i64
-  %133 = getelementptr inbounds double, double* %130, i64 %132
-  store double %129, double* %133, align 8
-  br label %134
+for.body20:                                       ; preds = %for.cond18
+  %40 = load i32, i32* %i, align 4
+  %41 = load i32, i32* %A2_dimension, align 4
+  %mul = mul nsw i32 %40, %41
+  %42 = load i32, i32* %j, align 4
+  %add = add nsw i32 %mul, %42
+  store i32 %add, i32* %pA2, align 4
+  %43 = load i32, i32* %i, align 4
+  %44 = load i32, i32* %B2_dimension, align 4
+  %mul21 = mul nsw i32 %43, %44
+  %45 = load i32, i32* %j, align 4
+  %add22 = add nsw i32 %mul21, %45
+  store i32 %add22, i32* %pB2, align 4
+  %46 = load i32, i32* %i, align 4
+  %47 = load i32, i32* %C2_dimension, align 4
+  %mul23 = mul nsw i32 %46, %47
+  %48 = load i32, i32* %j, align 4
+  %add24 = add nsw i32 %mul23, %48
+  store i32 %add24, i32* %pC2, align 4
+  %49 = load i32, i32* %i, align 4
+  %50 = load i32, i32* %D2_dimension, align 4
+  %mul25 = mul nsw i32 %49, %50
+  %51 = load i32, i32* %j, align 4
+  %add26 = add nsw i32 %mul25, %51
+  store i32 %add26, i32* %pD2, align 4
+  %52 = load double*, double** %B_vals, align 8
+  %53 = load i32, i32* %pB2, align 4
+  %idxprom = sext i32 %53 to i64
+  %arrayidx27 = getelementptr inbounds double, double* %52, i64 %idxprom
+  %54 = load double, double* %arrayidx27, align 8
+  %55 = load double*, double** %C_vals, align 8
+  %56 = load i32, i32* %pC2, align 4
+  %idxprom28 = sext i32 %56 to i64
+  %arrayidx29 = getelementptr inbounds double, double* %55, i64 %idxprom28
+  %57 = load double, double* %arrayidx29, align 8
+  %add30 = fadd double %54, %57
+  %58 = load double*, double** %D_vals, align 8
+  %59 = load i32, i32* %pD2, align 4
+  %idxprom31 = sext i32 %59 to i64
+  %arrayidx32 = getelementptr inbounds double, double* %58, i64 %idxprom31
+  %60 = load double, double* %arrayidx32, align 8
+  %add33 = fadd double %add30, %60
+  %61 = load double*, double** %A_vals, align 8
+  %62 = load i32, i32* %pA2, align 4
+  %idxprom34 = sext i32 %62 to i64
+  %arrayidx35 = getelementptr inbounds double, double* %61, i64 %idxprom34
+  store double %add33, double* %arrayidx35, align 8
+  br label %for.inc
 
-; <label>:134:                                    ; preds = %92
-  %135 = load i32, i32* %22, align 4
-  %136 = add nsw i32 %135, 1
-  store i32 %136, i32* %22, align 4
-  br label %88
+for.inc:                                          ; preds = %for.body20
+  %63 = load i32, i32* %j, align 4
+  %inc = add nsw i32 %63, 1
+  store i32 %inc, i32* %j, align 4
+  br label %for.cond18
 
-; <label>:137:                                    ; preds = %88
-  br label %138
+for.end:                                          ; preds = %for.cond18
+  br label %for.inc36
 
-; <label>:138:                                    ; preds = %137
-  %139 = load i32, i32* %21, align 4
-  %140 = add nsw i32 %139, 1
-  store i32 %140, i32* %21, align 4
-  br label %83
+for.inc36:                                        ; preds = %for.end
+  %64 = load i32, i32* %i, align 4
+  %inc37 = add nsw i32 %64, 1
+  store i32 %inc37, i32* %i, align 4
+  br label %for.cond
 
-; <label>:141:                                    ; preds = %83
+for.end38:                                        ; preds = %for.cond
   ret i32 0
 }
 
-; Function Attrs: noinline nounwind optnone ssp uwtable
-define i32 @assemble(%struct.taco_tensor_t*, %struct.taco_tensor_t*, %struct.taco_tensor_t*, %struct.taco_tensor_t*) #0 {
-  %5 = alloca %struct.taco_tensor_t*, align 8
-  %6 = alloca %struct.taco_tensor_t*, align 8
-  %7 = alloca %struct.taco_tensor_t*, align 8
-  %8 = alloca %struct.taco_tensor_t*, align 8
-  %9 = alloca i32, align 4
-  %10 = alloca i32, align 4
-  %11 = alloca double*, align 8
-  store %struct.taco_tensor_t* %0, %struct.taco_tensor_t** %5, align 8
-  store %struct.taco_tensor_t* %1, %struct.taco_tensor_t** %6, align 8
-  store %struct.taco_tensor_t* %2, %struct.taco_tensor_t** %7, align 8
-  store %struct.taco_tensor_t* %3, %struct.taco_tensor_t** %8, align 8
-  %12 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %5, align 8
-  %13 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %12, i32 0, i32 1
-  %14 = load i32*, i32** %13, align 8
-  %15 = getelementptr inbounds i32, i32* %14, i64 0
-  %16 = load i32, i32* %15, align 4
-  store i32 %16, i32* %9, align 4
-  %17 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %5, align 8
-  %18 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %17, i32 0, i32 1
-  %19 = load i32*, i32** %18, align 8
-  %20 = getelementptr inbounds i32, i32* %19, i64 1
-  %21 = load i32, i32* %20, align 4
-  store i32 %21, i32* %10, align 4
-  %22 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %5, align 8
-  %23 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %22, i32 0, i32 6
-  %24 = load i8*, i8** %23, align 8
-  %25 = bitcast i8* %24 to double*
-  store double* %25, double** %11, align 8
-  %26 = load i32, i32* %9, align 4
-  %27 = load i32, i32* %10, align 4
-  %28 = mul nsw i32 %26, %27
-  %29 = sext i32 %28 to i64
-  %30 = mul i64 8, %29
-  %31 = call i8* @malloc(i64 %30) #2
-  %32 = bitcast i8* %31 to double*
-  store double* %32, double** %11, align 8
-  %33 = load double*, double** %11, align 8
-  %34 = bitcast double* %33 to i8*
-  %35 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %5, align 8
-  %36 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %35, i32 0, i32 6
-  store i8* %34, i8** %36, align 8
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @assemble(%struct.taco_tensor_t* %A, %struct.taco_tensor_t* %B, %struct.taco_tensor_t* %C, %struct.taco_tensor_t* %D) #0 {
+entry:
+  %A.addr = alloca %struct.taco_tensor_t*, align 8
+  %B.addr = alloca %struct.taco_tensor_t*, align 8
+  %C.addr = alloca %struct.taco_tensor_t*, align 8
+  %D.addr = alloca %struct.taco_tensor_t*, align 8
+  %A1_dimension = alloca i32, align 4
+  %A2_dimension = alloca i32, align 4
+  %A_vals = alloca double*, align 8
+  store %struct.taco_tensor_t* %A, %struct.taco_tensor_t** %A.addr, align 8
+  store %struct.taco_tensor_t* %B, %struct.taco_tensor_t** %B.addr, align 8
+  store %struct.taco_tensor_t* %C, %struct.taco_tensor_t** %C.addr, align 8
+  store %struct.taco_tensor_t* %D, %struct.taco_tensor_t** %D.addr, align 8
+  %0 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %A.addr, align 8
+  %dimensions = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %0, i32 0, i32 1
+  %1 = load i32*, i32** %dimensions, align 8
+  %arrayidx = getelementptr inbounds i32, i32* %1, i64 0
+  %2 = load i32, i32* %arrayidx, align 4
+  store i32 %2, i32* %A1_dimension, align 4
+  %3 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %A.addr, align 8
+  %dimensions1 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %3, i32 0, i32 1
+  %4 = load i32*, i32** %dimensions1, align 8
+  %arrayidx2 = getelementptr inbounds i32, i32* %4, i64 1
+  %5 = load i32, i32* %arrayidx2, align 4
+  store i32 %5, i32* %A2_dimension, align 4
+  %6 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %A.addr, align 8
+  %vals = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %6, i32 0, i32 6
+  %7 = load i8*, i8** %vals, align 8
+  %8 = bitcast i8* %7 to double*
+  store double* %8, double** %A_vals, align 8
+  %9 = load i32, i32* %A1_dimension, align 4
+  %10 = load i32, i32* %A2_dimension, align 4
+  %mul = mul nsw i32 %9, %10
+  %conv = sext i32 %mul to i64
+  %mul3 = mul i64 8, %conv
+  %call = call i8* @malloc(i64 %mul3) #2
+  %11 = bitcast i8* %call to double*
+  store double* %11, double** %A_vals, align 8
+  %12 = load double*, double** %A_vals, align 8
+  %13 = bitcast double* %12 to i8*
+  %14 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %A.addr, align 8
+  %vals4 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %14, i32 0, i32 6
+  store i8* %13, i8** %vals4, align 8
   ret i32 0
 }
 
 ; Function Attrs: allocsize(0)
 declare i8* @malloc(i64) #1
 
-; Function Attrs: noinline nounwind optnone ssp uwtable
-define i32 @evaluate(%struct.taco_tensor_t*, %struct.taco_tensor_t*, %struct.taco_tensor_t*, %struct.taco_tensor_t*) #0 {
-  %5 = alloca %struct.taco_tensor_t*, align 8
-  %6 = alloca %struct.taco_tensor_t*, align 8
-  %7 = alloca %struct.taco_tensor_t*, align 8
-  %8 = alloca %struct.taco_tensor_t*, align 8
-  %9 = alloca i32, align 4
-  %10 = alloca i32, align 4
-  %11 = alloca double*, align 8
-  %12 = alloca i32, align 4
-  %13 = alloca i32, align 4
-  %14 = alloca double*, align 8
-  %15 = alloca i32, align 4
-  %16 = alloca i32, align 4
-  %17 = alloca double*, align 8
-  %18 = alloca i32, align 4
-  %19 = alloca i32, align 4
-  %20 = alloca double*, align 8
-  %21 = alloca i32, align 4
-  %22 = alloca i32, align 4
-  %23 = alloca i32, align 4
-  %24 = alloca i32, align 4
-  %25 = alloca i32, align 4
-  %26 = alloca i32, align 4
-  %27 = alloca i32, align 4
-  store %struct.taco_tensor_t* %0, %struct.taco_tensor_t** %5, align 8
-  store %struct.taco_tensor_t* %1, %struct.taco_tensor_t** %6, align 8
-  store %struct.taco_tensor_t* %2, %struct.taco_tensor_t** %7, align 8
-  store %struct.taco_tensor_t* %3, %struct.taco_tensor_t** %8, align 8
-  %28 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %5, align 8
-  %29 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %28, i32 0, i32 1
-  %30 = load i32*, i32** %29, align 8
-  %31 = getelementptr inbounds i32, i32* %30, i64 0
-  %32 = load i32, i32* %31, align 4
-  store i32 %32, i32* %9, align 4
-  %33 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %5, align 8
-  %34 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %33, i32 0, i32 1
-  %35 = load i32*, i32** %34, align 8
-  %36 = getelementptr inbounds i32, i32* %35, i64 1
-  %37 = load i32, i32* %36, align 4
-  store i32 %37, i32* %10, align 4
-  %38 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %5, align 8
-  %39 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %38, i32 0, i32 6
-  %40 = load i8*, i8** %39, align 8
-  %41 = bitcast i8* %40 to double*
-  store double* %41, double** %11, align 8
-  %42 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %6, align 8
-  %43 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %42, i32 0, i32 1
-  %44 = load i32*, i32** %43, align 8
-  %45 = getelementptr inbounds i32, i32* %44, i64 0
-  %46 = load i32, i32* %45, align 4
-  store i32 %46, i32* %12, align 4
-  %47 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %6, align 8
-  %48 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %47, i32 0, i32 1
-  %49 = load i32*, i32** %48, align 8
-  %50 = getelementptr inbounds i32, i32* %49, i64 1
-  %51 = load i32, i32* %50, align 4
-  store i32 %51, i32* %13, align 4
-  %52 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %6, align 8
-  %53 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %52, i32 0, i32 6
-  %54 = load i8*, i8** %53, align 8
-  %55 = bitcast i8* %54 to double*
-  store double* %55, double** %14, align 8
-  %56 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %7, align 8
-  %57 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %56, i32 0, i32 1
-  %58 = load i32*, i32** %57, align 8
-  %59 = getelementptr inbounds i32, i32* %58, i64 0
-  %60 = load i32, i32* %59, align 4
-  store i32 %60, i32* %15, align 4
-  %61 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %7, align 8
-  %62 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %61, i32 0, i32 1
-  %63 = load i32*, i32** %62, align 8
-  %64 = getelementptr inbounds i32, i32* %63, i64 1
-  %65 = load i32, i32* %64, align 4
-  store i32 %65, i32* %16, align 4
-  %66 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %7, align 8
-  %67 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %66, i32 0, i32 6
-  %68 = load i8*, i8** %67, align 8
-  %69 = bitcast i8* %68 to double*
-  store double* %69, double** %17, align 8
-  %70 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %8, align 8
-  %71 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %70, i32 0, i32 1
-  %72 = load i32*, i32** %71, align 8
-  %73 = getelementptr inbounds i32, i32* %72, i64 0
-  %74 = load i32, i32* %73, align 4
-  store i32 %74, i32* %18, align 4
-  %75 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %8, align 8
-  %76 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %75, i32 0, i32 1
-  %77 = load i32*, i32** %76, align 8
-  %78 = getelementptr inbounds i32, i32* %77, i64 1
-  %79 = load i32, i32* %78, align 4
-  store i32 %79, i32* %19, align 4
-  %80 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %8, align 8
-  %81 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %80, i32 0, i32 6
-  %82 = load i8*, i8** %81, align 8
-  %83 = bitcast i8* %82 to double*
-  store double* %83, double** %20, align 8
-  %84 = load i32, i32* %9, align 4
-  %85 = load i32, i32* %10, align 4
-  %86 = mul nsw i32 %84, %85
-  store i32 %86, i32* %21, align 4
-  %87 = load i32, i32* %21, align 4
-  %88 = sext i32 %87 to i64
-  %89 = mul i64 8, %88
-  %90 = call i8* @malloc(i64 %89) #2
-  %91 = bitcast i8* %90 to double*
-  store double* %91, double** %11, align 8
-  store i32 0, i32* %22, align 4
-  br label %92
+; Function Attrs: noinline nounwind ssp uwtable
+define i32 @evaluate(%struct.taco_tensor_t* %A, %struct.taco_tensor_t* %B, %struct.taco_tensor_t* %C, %struct.taco_tensor_t* %D) #0 {
+entry:
+  %A.addr = alloca %struct.taco_tensor_t*, align 8
+  %B.addr = alloca %struct.taco_tensor_t*, align 8
+  %C.addr = alloca %struct.taco_tensor_t*, align 8
+  %D.addr = alloca %struct.taco_tensor_t*, align 8
+  %A1_dimension = alloca i32, align 4
+  %A2_dimension = alloca i32, align 4
+  %A_vals = alloca double*, align 8
+  %B1_dimension = alloca i32, align 4
+  %B2_dimension = alloca i32, align 4
+  %B_vals = alloca double*, align 8
+  %C1_dimension = alloca i32, align 4
+  %C2_dimension = alloca i32, align 4
+  %C_vals = alloca double*, align 8
+  %D1_dimension = alloca i32, align 4
+  %D2_dimension = alloca i32, align 4
+  %D_vals = alloca double*, align 8
+  %A_capacity = alloca i32, align 4
+  %i = alloca i32, align 4
+  %j = alloca i32, align 4
+  %pA2 = alloca i32, align 4
+  %pB2 = alloca i32, align 4
+  %pC2 = alloca i32, align 4
+  %pD2 = alloca i32, align 4
+  store %struct.taco_tensor_t* %A, %struct.taco_tensor_t** %A.addr, align 8
+  store %struct.taco_tensor_t* %B, %struct.taco_tensor_t** %B.addr, align 8
+  store %struct.taco_tensor_t* %C, %struct.taco_tensor_t** %C.addr, align 8
+  store %struct.taco_tensor_t* %D, %struct.taco_tensor_t** %D.addr, align 8
+  %0 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %A.addr, align 8
+  %dimensions = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %0, i32 0, i32 1
+  %1 = load i32*, i32** %dimensions, align 8
+  %arrayidx = getelementptr inbounds i32, i32* %1, i64 0
+  %2 = load i32, i32* %arrayidx, align 4
+  store i32 %2, i32* %A1_dimension, align 4
+  %3 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %A.addr, align 8
+  %dimensions1 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %3, i32 0, i32 1
+  %4 = load i32*, i32** %dimensions1, align 8
+  %arrayidx2 = getelementptr inbounds i32, i32* %4, i64 1
+  %5 = load i32, i32* %arrayidx2, align 4
+  store i32 %5, i32* %A2_dimension, align 4
+  %6 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %A.addr, align 8
+  %vals = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %6, i32 0, i32 6
+  %7 = load i8*, i8** %vals, align 8
+  %8 = bitcast i8* %7 to double*
+  store double* %8, double** %A_vals, align 8
+  %9 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %B.addr, align 8
+  %dimensions3 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %9, i32 0, i32 1
+  %10 = load i32*, i32** %dimensions3, align 8
+  %arrayidx4 = getelementptr inbounds i32, i32* %10, i64 0
+  %11 = load i32, i32* %arrayidx4, align 4
+  store i32 %11, i32* %B1_dimension, align 4
+  %12 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %B.addr, align 8
+  %dimensions5 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %12, i32 0, i32 1
+  %13 = load i32*, i32** %dimensions5, align 8
+  %arrayidx6 = getelementptr inbounds i32, i32* %13, i64 1
+  %14 = load i32, i32* %arrayidx6, align 4
+  store i32 %14, i32* %B2_dimension, align 4
+  %15 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %B.addr, align 8
+  %vals7 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %15, i32 0, i32 6
+  %16 = load i8*, i8** %vals7, align 8
+  %17 = bitcast i8* %16 to double*
+  store double* %17, double** %B_vals, align 8
+  %18 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %C.addr, align 8
+  %dimensions8 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %18, i32 0, i32 1
+  %19 = load i32*, i32** %dimensions8, align 8
+  %arrayidx9 = getelementptr inbounds i32, i32* %19, i64 0
+  %20 = load i32, i32* %arrayidx9, align 4
+  store i32 %20, i32* %C1_dimension, align 4
+  %21 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %C.addr, align 8
+  %dimensions10 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %21, i32 0, i32 1
+  %22 = load i32*, i32** %dimensions10, align 8
+  %arrayidx11 = getelementptr inbounds i32, i32* %22, i64 1
+  %23 = load i32, i32* %arrayidx11, align 4
+  store i32 %23, i32* %C2_dimension, align 4
+  %24 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %C.addr, align 8
+  %vals12 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %24, i32 0, i32 6
+  %25 = load i8*, i8** %vals12, align 8
+  %26 = bitcast i8* %25 to double*
+  store double* %26, double** %C_vals, align 8
+  %27 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %D.addr, align 8
+  %dimensions13 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %27, i32 0, i32 1
+  %28 = load i32*, i32** %dimensions13, align 8
+  %arrayidx14 = getelementptr inbounds i32, i32* %28, i64 0
+  %29 = load i32, i32* %arrayidx14, align 4
+  store i32 %29, i32* %D1_dimension, align 4
+  %30 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %D.addr, align 8
+  %dimensions15 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %30, i32 0, i32 1
+  %31 = load i32*, i32** %dimensions15, align 8
+  %arrayidx16 = getelementptr inbounds i32, i32* %31, i64 1
+  %32 = load i32, i32* %arrayidx16, align 4
+  store i32 %32, i32* %D2_dimension, align 4
+  %33 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %D.addr, align 8
+  %vals17 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %33, i32 0, i32 6
+  %34 = load i8*, i8** %vals17, align 8
+  %35 = bitcast i8* %34 to double*
+  store double* %35, double** %D_vals, align 8
+  %36 = load i32, i32* %A1_dimension, align 4
+  %37 = load i32, i32* %A2_dimension, align 4
+  %mul = mul nsw i32 %36, %37
+  store i32 %mul, i32* %A_capacity, align 4
+  %38 = load i32, i32* %A_capacity, align 4
+  %conv = sext i32 %38 to i64
+  %mul18 = mul i64 8, %conv
+  %call = call i8* @malloc(i64 %mul18) #2
+  %39 = bitcast i8* %call to double*
+  store double* %39, double** %A_vals, align 8
+  store i32 0, i32* %i, align 4
+  br label %for.cond
 
-; <label>:92:                                     ; preds = %147, %4
-  %93 = load i32, i32* %22, align 4
-  %94 = load i32, i32* %18, align 4
-  %95 = icmp slt i32 %93, %94
-  br i1 %95, label %96, label %150
+for.cond:                                         ; preds = %for.inc40, %entry
+  %40 = load i32, i32* %i, align 4
+  %41 = load i32, i32* %D1_dimension, align 4
+  %cmp = icmp slt i32 %40, %41
+  br i1 %cmp, label %for.body, label %for.end42
 
-; <label>:96:                                     ; preds = %92
-  store i32 0, i32* %23, align 4
-  br label %97
+for.body:                                         ; preds = %for.cond
+  store i32 0, i32* %j, align 4
+  br label %for.cond20
 
-; <label>:97:                                     ; preds = %143, %96
-  %98 = load i32, i32* %23, align 4
-  %99 = load i32, i32* %19, align 4
-  %100 = icmp slt i32 %98, %99
-  br i1 %100, label %101, label %146
+for.cond20:                                       ; preds = %for.inc, %for.body
+  %42 = load i32, i32* %j, align 4
+  %43 = load i32, i32* %D2_dimension, align 4
+  %cmp21 = icmp slt i32 %42, %43
+  br i1 %cmp21, label %for.body23, label %for.end
 
-; <label>:101:                                    ; preds = %97
-  %102 = load i32, i32* %22, align 4
-  %103 = load i32, i32* %10, align 4
-  %104 = mul nsw i32 %102, %103
-  %105 = load i32, i32* %23, align 4
-  %106 = add nsw i32 %104, %105
-  store i32 %106, i32* %24, align 4
-  %107 = load i32, i32* %22, align 4
-  %108 = load i32, i32* %13, align 4
-  %109 = mul nsw i32 %107, %108
-  %110 = load i32, i32* %23, align 4
-  %111 = add nsw i32 %109, %110
-  store i32 %111, i32* %25, align 4
-  %112 = load i32, i32* %22, align 4
-  %113 = load i32, i32* %16, align 4
-  %114 = mul nsw i32 %112, %113
-  %115 = load i32, i32* %23, align 4
-  %116 = add nsw i32 %114, %115
-  store i32 %116, i32* %26, align 4
-  %117 = load i32, i32* %22, align 4
-  %118 = load i32, i32* %19, align 4
-  %119 = mul nsw i32 %117, %118
-  %120 = load i32, i32* %23, align 4
-  %121 = add nsw i32 %119, %120
-  store i32 %121, i32* %27, align 4
-  %122 = load double*, double** %14, align 8
-  %123 = load i32, i32* %25, align 4
-  %124 = sext i32 %123 to i64
-  %125 = getelementptr inbounds double, double* %122, i64 %124
-  %126 = load double, double* %125, align 8
-  %127 = load double*, double** %17, align 8
-  %128 = load i32, i32* %26, align 4
-  %129 = sext i32 %128 to i64
-  %130 = getelementptr inbounds double, double* %127, i64 %129
-  %131 = load double, double* %130, align 8
-  %132 = fadd double %126, %131
-  %133 = load double*, double** %20, align 8
-  %134 = load i32, i32* %27, align 4
-  %135 = sext i32 %134 to i64
-  %136 = getelementptr inbounds double, double* %133, i64 %135
-  %137 = load double, double* %136, align 8
-  %138 = fadd double %132, %137
-  %139 = load double*, double** %11, align 8
-  %140 = load i32, i32* %24, align 4
-  %141 = sext i32 %140 to i64
-  %142 = getelementptr inbounds double, double* %139, i64 %141
-  store double %138, double* %142, align 8
-  br label %143
+for.body23:                                       ; preds = %for.cond20
+  %44 = load i32, i32* %i, align 4
+  %45 = load i32, i32* %A2_dimension, align 4
+  %mul24 = mul nsw i32 %44, %45
+  %46 = load i32, i32* %j, align 4
+  %add = add nsw i32 %mul24, %46
+  store i32 %add, i32* %pA2, align 4
+  %47 = load i32, i32* %i, align 4
+  %48 = load i32, i32* %B2_dimension, align 4
+  %mul25 = mul nsw i32 %47, %48
+  %49 = load i32, i32* %j, align 4
+  %add26 = add nsw i32 %mul25, %49
+  store i32 %add26, i32* %pB2, align 4
+  %50 = load i32, i32* %i, align 4
+  %51 = load i32, i32* %C2_dimension, align 4
+  %mul27 = mul nsw i32 %50, %51
+  %52 = load i32, i32* %j, align 4
+  %add28 = add nsw i32 %mul27, %52
+  store i32 %add28, i32* %pC2, align 4
+  %53 = load i32, i32* %i, align 4
+  %54 = load i32, i32* %D2_dimension, align 4
+  %mul29 = mul nsw i32 %53, %54
+  %55 = load i32, i32* %j, align 4
+  %add30 = add nsw i32 %mul29, %55
+  store i32 %add30, i32* %pD2, align 4
+  %56 = load double*, double** %B_vals, align 8
+  %57 = load i32, i32* %pB2, align 4
+  %idxprom = sext i32 %57 to i64
+  %arrayidx31 = getelementptr inbounds double, double* %56, i64 %idxprom
+  %58 = load double, double* %arrayidx31, align 8
+  %59 = load double*, double** %C_vals, align 8
+  %60 = load i32, i32* %pC2, align 4
+  %idxprom32 = sext i32 %60 to i64
+  %arrayidx33 = getelementptr inbounds double, double* %59, i64 %idxprom32
+  %61 = load double, double* %arrayidx33, align 8
+  %add34 = fadd double %58, %61
+  %62 = load double*, double** %D_vals, align 8
+  %63 = load i32, i32* %pD2, align 4
+  %idxprom35 = sext i32 %63 to i64
+  %arrayidx36 = getelementptr inbounds double, double* %62, i64 %idxprom35
+  %64 = load double, double* %arrayidx36, align 8
+  %add37 = fadd double %add34, %64
+  %65 = load double*, double** %A_vals, align 8
+  %66 = load i32, i32* %pA2, align 4
+  %idxprom38 = sext i32 %66 to i64
+  %arrayidx39 = getelementptr inbounds double, double* %65, i64 %idxprom38
+  store double %add37, double* %arrayidx39, align 8
+  br label %for.inc
 
-; <label>:143:                                    ; preds = %101
-  %144 = load i32, i32* %23, align 4
-  %145 = add nsw i32 %144, 1
-  store i32 %145, i32* %23, align 4
-  br label %97
+for.inc:                                          ; preds = %for.body23
+  %67 = load i32, i32* %j, align 4
+  %inc = add nsw i32 %67, 1
+  store i32 %inc, i32* %j, align 4
+  br label %for.cond20
 
-; <label>:146:                                    ; preds = %97
-  br label %147
+for.end:                                          ; preds = %for.cond20
+  br label %for.inc40
 
-; <label>:147:                                    ; preds = %146
-  %148 = load i32, i32* %22, align 4
-  %149 = add nsw i32 %148, 1
-  store i32 %149, i32* %22, align 4
-  br label %92
+for.inc40:                                        ; preds = %for.end
+  %68 = load i32, i32* %i, align 4
+  %inc41 = add nsw i32 %68, 1
+  store i32 %inc41, i32* %i, align 4
+  br label %for.cond
 
-; <label>:150:                                    ; preds = %92
-  %151 = load double*, double** %11, align 8
-  %152 = bitcast double* %151 to i8*
-  %153 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %5, align 8
-  %154 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %153, i32 0, i32 6
-  store i8* %152, i8** %154, align 8
+for.end42:                                        ; preds = %for.cond
+  %69 = load double*, double** %A_vals, align 8
+  %70 = bitcast double* %69 to i8*
+  %71 = load %struct.taco_tensor_t*, %struct.taco_tensor_t** %A.addr, align 8
+  %vals43 = getelementptr inbounds %struct.taco_tensor_t, %struct.taco_tensor_t* %71, i32 0, i32 6
+  store i8* %70, i8** %vals43, align 8
   ret i32 0
 }
 
-attributes #0 = { noinline nounwind optnone ssp uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "min-legal-vector-width"="0" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
-attributes #1 = { allocsize(0) "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #0 = { noinline nounwind ssp uwtable "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "min-legal-vector-width"="0" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-jump-tables"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
+attributes #1 = { allocsize(0) "correctly-rounded-divide-sqrt-fp-math"="false" "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "no-signed-zeros-fp-math"="false" "no-trapping-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="penryn" "target-features"="+cx16,+cx8,+fxsr,+mmx,+sahf,+sse,+sse2,+sse3,+sse4.1,+ssse3,+x87" "unsafe-fp-math"="false" "use-soft-float"="false" }
 attributes #2 = { allocsize(0) }
 
-!llvm.module.flags = !{!0, !1, !2}
-!llvm.ident = !{!3}
+!llvm.module.flags = !{!0, !1}
+!llvm.ident = !{!2}
 
-!0 = !{i32 2, !"SDK Version", [2 x i32] [i32 10, i32 14]}
-!1 = !{i32 1, !"wchar_size", i32 4}
-!2 = !{i32 7, !"PIC Level", i32 2}
-!3 = !{!"Apple clang version 11.0.0 (clang-1100.0.20.17)"}
+!0 = !{i32 1, !"wchar_size", i32 4}
+!1 = !{i32 7, !"PIC Level", i32 2}
+!2 = !{!"clang version 9.0.0 (tags/RELEASE_900/final)"}
