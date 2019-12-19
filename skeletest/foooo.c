@@ -7,9 +7,11 @@ int main(int argc, char** argv) {
 
   for (int64_t i = 0; i < 100; i++) {
     a[i] = i;
-        for (int64_t j = 0; j < 100; j++) {
-            b[j] = j;
-        }
-  } 
+    b[i] = i*4;
+    for (int64_t j = 0; j < 100; j++) {
+        a[j] += i*j;
+        b[j] += i*j;
+    }
+  }
   printf("%ld %ld", a[0], a[99]);
 }
