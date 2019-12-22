@@ -75,7 +75,7 @@ namespace {
       LoopInfo &LI = getAnalysis<LoopInfoWrapperPass>().getLoopInfo();
       ScalarEvolution &SE = getAnalysis<ScalarEvolutionWrapperPass>().getSE();
 
-      errs() << "name: " << L->getName() << "\n";
+      // errs() << "name: " << L->getName() << "\n";
 
       PHINode* indVar = L->getCanonicalInductionVariable();
       BinaryOperator* indVarUpdate = NULL;
@@ -101,7 +101,7 @@ namespace {
                   }
 
                 } else {
-                  errs() << "no loop bound found!\n";
+                  // errs() << "no loop bound found!\n";
                 }
               }
             }
@@ -147,7 +147,7 @@ namespace {
           } else if (auto* gep = dyn_cast<GetElementPtrInst>(&I)) {
             for (auto& index : gep->indices()) { 
               if (index != indVar && !L->isLoopInvariant(index)) {
-                errs() << "cross gep! index: " << *index << "\n";
+                // errs() << "cross gep! index: " << *index << "\n";
                 hasCrossIterationDependencies = true;
               }
             }
@@ -184,7 +184,7 @@ namespace {
           && hasLoopUpdate
           && !hasCrossIterationDependencies;
 
-      errs() << "vectorizable? " << isVectorizable << "\n";
+      // errs() << "vectorizable? " << isVectorizable << "\n";
 
       // vectorize!
       if (isVectorizable) {
